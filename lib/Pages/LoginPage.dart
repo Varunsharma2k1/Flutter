@@ -9,21 +9,15 @@ class LoginPage extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: [
+          const SizedBox(
+            height: 50,
+          ),
           Image.asset(
             "assets/images/Login_img.png",
             fit: BoxFit.fitWidth,
           ),
-          const SizedBox(
-            height: 50.0,
-            child: Text(
-              "hii!!!!!!",
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
-          ),
           const Text(
-            "Welcome Back",
+            "Welcome!!!",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
