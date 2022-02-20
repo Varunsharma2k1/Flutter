@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
+  bool changeButton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -18,8 +25,8 @@ class LoginPage extends StatelessWidget {
               "assets/images/Login_img.png",
               fit: BoxFit.fitWidth,
             ),
-            const Text(
-              "Welcome!!!",
+            Text(
+              "Welcome $name",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -42,6 +49,10 @@ class LoginPage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
                         )),
+                    onChanged: (value) {
+                      name = value;
+                      setState(() {});
+                    },
                   ),
                   TextFormField(
                     obscureText: true,
@@ -64,17 +75,45 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-              child: const Text("Login"),
-              style: TextButton.styleFrom(
-                minimumSize: Size(200, 40),
-                shadowColor: Colors.black,
-                backgroundColor: Colors.lightGreen[300],
-              ),
-              onPressed: () {
+
+            InkWell(
+              hoverColor: Colors.black,
+              onTap: () async {
+                setState(() {
+                  changeButton = true;
+                });
+                await Future.delayed(Duration(seconds: 1));
                 Navigator.pushNamed(context, MyRoutes.profileRoute);
               },
-            ),
+              child: AnimatedContainer(
+                duration: Duration(seconds: 1),
+                height: 40,
+                width: changeButton ? 50 : 150,
+                alignment: Alignment.center,
+                child: changeButton
+                    ? Icon(Icons.done_rounded)
+                    : Text(
+                        "Login",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                decoration: BoxDecoration(
+                    color: Colors.limeAccent,
+                    borderRadius: BorderRadius.circular(changeButton ? 50 : 8)),
+              ),
+            )
+
+            // ElevatedButton(
+            //   child: const Text("Login"),
+            //   style: TextButton.styleFrom(
+            //     minimumSize: Size(200, 40),
+            //     shadowColor: Colors.black,
+            //     backgroundColor: Colors.lightGreen[300],
+            //   ),
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, MyRoutes.profileRoute);
+            //   },
+            // ),
           ],
         ),
       ),

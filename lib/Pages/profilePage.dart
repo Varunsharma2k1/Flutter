@@ -9,7 +9,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Center(
-        child: Text("Hiiii guys"),
+        child: Text("Hiiii guys welcome to profile page"),
       ),
     );
   }
